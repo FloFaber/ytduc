@@ -63,6 +63,11 @@ function ytduc_log(string $msg, $level = L_ERR){
 function ytduc(string $id) : string|false
 {
 
+  if(!preg_match("/^[A-Za-z0-9_-]{11}$/", $id) > 0){
+    log("$id is not a valid video-id", L_ERR);
+    return false;
+  }
+
   $url = "https://www.youtube.com/watch?v=$id";
 
   if(!file_exists(YTDLP)){
